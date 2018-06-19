@@ -2,6 +2,8 @@ package mybatis_spring.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import mybatis_spring.Operator;
 
 public interface OperatorMapper {
@@ -15,4 +17,11 @@ public interface OperatorMapper {
 	void delete(Integer id);
 
 	void update(Operator operator);
+
+	List<Operator> findByRoleAndDisabled(@Param("role") String role,
+			@Param("disabled") Boolean disabled);
+
+	Integer count();
+
+	List<String> findAllRoles();
 }

@@ -7,21 +7,41 @@
 		select ID id, USERNAME username,
 		PASSWORD password, ROLE role, DISABLED disabled from operators
 	</select>
+
 	<select id="findOne" resultType="mybatis_spring.Operator">
 		select ID id, USERNAME username,
 		PASSWORD password, ROLE role, DISABLED disabled from operators
 		where ID
 		= #{id}
 	</select>
-	<insert id="create">
+
+	<insert id="create" useGeneratedKeys="true" keyColumn="ID"
+		keyProperty="id">
 		insert into operators(ID, USERNAME, PASSWORD, ROLE)
 		values(accounts_seq.nextval, #{username}, #{password}, #{role})
 	</insert>
+
 	<update id="delete">
 		delete from operators where ID = #{id}
 	</update>
+
 	<update id="update">
 		update operators set USERNAME = #{username}, PASSWORD
 		= #{password}, ROLE = #{role}, DISABLED = #{disabled} where ID = #{id}
 	</update>
+
+	<select id="findByRoleAndDisabled" resultType="mybatis_spring.Operator">
+		select ID id,
+		USERNAME username,
+		PASSWORD password, ROLE role, DISABLED disabled from
+		operators where ROLE = #{role} and DISABLED = #{disabled}
+	</select>
+
+	<select id="count" resultType="int">
+		select count(*) from operators
+	</select>
+	
+	<select id="findAllRoles" resultType="string">
+		select distinct ROLE from operators where ROLE is not null
+	</select>
 </mapper>
