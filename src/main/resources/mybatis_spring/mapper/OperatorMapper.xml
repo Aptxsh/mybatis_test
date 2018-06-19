@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis_spring.mapper.OperatorMapper">
+	<select id="findAll" resultType="mybatis_spring.Operator">
+		select ID id, USERNAME username,
+		PASSWORD password, ROLE role, DISABLED disabled from operators
+	</select>
+	<select id="findOne" resultType="mybatis_spring.Operator">
+		select ID id, USERNAME username,
+		PASSWORD password, ROLE role, DISABLED disabled from operators
+		where ID
+		= #{id}
+	</select>
+	<insert id="create">
+		insert into operators(ID, USERNAME, PASSWORD, ROLE)
+		values(accounts_seq.nextval, #{username}, #{password}, #{role})
+	</insert>
+	<update id="delete">
+		delete from operators where ID = #{id}
+	</update>
+	<update id="update">
+		update operators set USERNAME = #{username}, PASSWORD
+		= #{password}, ROLE = #{role}, DISABLED = #{disabled} where ID = #{id}
+	</update>
+</mapper>
