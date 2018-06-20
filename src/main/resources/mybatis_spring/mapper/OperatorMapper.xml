@@ -60,6 +60,24 @@
 			#{id}
 		</foreach>
 	</update>
+
+	<select id="search" resultType="mybatis_spring.Operator">
+		select ID id, USERNAME username,
+		PASSWORD password, ROLE role, DISABLED
+		disabled from operators
+		<where>
+			<if test="username != null">
+				<bind name="namePattern" value="username + '%'" />
+				USERNAME like #{namePattern}
+			</if>
+			<if test="role != null">
+				and ROLE = #{role}
+			</if>
+			<if test="disabled != null">
+				and DISABLED = #{disabled}
+			</if>
+		</where>
+	</select>
 </mapper>
 
 

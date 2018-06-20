@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import mybatis_spring.Operator;
+import mybatistest.Student;
 
 public interface OperatorMapper {
 
@@ -28,4 +29,6 @@ public interface OperatorMapper {
 	List<Operator> findByUsernameLike(@Param("username") String username);
 
 	void batchDisable(@Param("ids") List<Integer> ids, @Param("disabled") Boolean disabled);
+
+	List<Student> search(Operator operator);
 }

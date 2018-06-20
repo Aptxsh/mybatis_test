@@ -15,7 +15,9 @@ public class Main {
 				AppConfig.class);
 		OperatorMapper operatorMapper = context.getBean(OperatorMapper.class);
 		// System.out.println("findAll:" + operatorMapper.findAll());
+		
 		// System.out.println("findOne:" + operatorMapper.findOne(1001));
+		
 		// try {
 		// Operator operator = new Operator("赵二", "root", "HR");
 		// operatorMapper.create(operator);
@@ -24,18 +26,26 @@ public class Main {
 		// System.out.println("添加失败");
 		// }
 		// operatorMapper.delete(1012);
+		
 		// Operator operator = operatorMapper.findOne(1002);
 		// operator.setRole("PS");
 		// operator.setPassword("123456");
 		// operatorMapper.update(operator);
+		
 		// List<Operator> list = operatorMapper.findByRoleAndDisabled("HR",
 		// false);
 		// System.out.println(list);
 		// System.out.println(operatorMapper.count());
+		
 		// List<String> list = operatorMapper.findAllRoles();
 		// System.out.println(list);
 		// System.out.println(operatorMapper.findByUsernameLike("王"));
-		operatorMapper.batchDisable(Arrays.asList(1001, 1002), true);
+		// operatorMapper.batchDisable(Arrays.asList(1001, 1002, 1005), true);
+		
+		// Operator operator = new Operator();
+		// operator.setRole("HR");
+		// operator.setDisabled(false);
+		// System.out.println(operatorMapper.search(operator));
 	}
 
 }
