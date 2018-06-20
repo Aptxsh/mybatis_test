@@ -1,6 +1,7 @@
 package mybatis_spring;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -31,8 +32,10 @@ public class Main {
 		// false);
 		// System.out.println(list);
 		// System.out.println(operatorMapper.count());
-		List<String> list = operatorMapper.findAllRoles();
-		System.out.println(list);
+		// List<String> list = operatorMapper.findAllRoles();
+		// System.out.println(list);
+		// System.out.println(operatorMapper.findByUsernameLike("王"));
+		operatorMapper.batchDisable(Arrays.asList(1001, 1002), true);
 	}
 
 }

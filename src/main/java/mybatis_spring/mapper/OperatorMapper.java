@@ -24,4 +24,8 @@ public interface OperatorMapper {
 	Integer count();
 
 	List<String> findAllRoles();
+
+	List<Operator> findByUsernameLike(@Param("username") String username);
+
+	void batchDisable(@Param("ids") List<Integer> ids, @Param("disabled") Boolean disabled);
 }

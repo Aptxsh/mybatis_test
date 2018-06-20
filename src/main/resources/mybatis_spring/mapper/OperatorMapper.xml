@@ -40,8 +40,30 @@
 	<select id="count" resultType="int">
 		select count(*) from operators
 	</select>
-	
+
 	<select id="findAllRoles" resultType="string">
-		select distinct ROLE from operators where ROLE is not null
+		select distinct ROLE from
+		operators where ROLE is not null
 	</select>
+
+	<select id="findByUsernameLike" resultType="mybatis_spring.Operator">
+		<bind name="namePattern" value="username + '%'" />
+		select ID id, USERNAME username,
+		PASSWORD password, ROLE role, DISABLED
+		disabled from operators where USERNAME like #{namePattern}
+	</select>
+
+	<update id="batchDisable">
+		update operators set DISABLED = 1 where ID in
+		<foreach collection="ids" item="id" open="(" separator=","
+			close=")">
+			#{id}
+		</foreach>
+	</update>
 </mapper>
+
+
+
+
+
+
