@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="books.mapper.AuthorMapper">
+	<select id="findOne" resultMap="authorDetails">
+		select a.name author_name,
+		a.gender author_gender, b.name book_name
+		from authors a
+		inner join
+		books_authors ba on a.id = ba.author_id
+		inner join books b on
+		ba.book_id = b.id
+		where a.id = #{id}
+	</select>
+	<resultMap type="Author" id="authorDetails">
+		<result column="author_name" property="name" />
+		<result column="author_gender" property="gender" />
+		<collection property="book" ofType="Book">
+			<result column="book_name" property="name" />
+		</collection>
+	</resultMap>
+</mapper>
+
+
+
+
+
+

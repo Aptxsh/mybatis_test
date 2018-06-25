@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="books.mapper.BookCommentMapper">
+	<select id="findOne" resultMap="bookCommentDetails">
+		select b.name book_name,
+		c.book_comment book_comment
+		from book_comments c inner join books b on
+		c.book_id = b.id
+		where c.id = #{id}
+	</select>
+	<select id="findOneAndPublisher" resultMap="bookCommentDetails">
+		select p.name
+		publisher_name, b.name book_name, c.book_comment book_comment
+		from
+		book_comments c inner join books b on c.book_id = b.id
+		inner join
+		publishers p on b.publisher_id = p.id
+		where c.id = #{id}
+	</select>
+	<resultMap type="Book_Comment" id="bookCommentDetails">
+		<result column="book_comment" property="comment" />
+		<association property="book" javaType="Book">
+			<result column="book_name" property="name" />
+			<association property="publisher" javaType="Publisher">
+				<result column="publisher_name" property="name" />
+			</association>
+		</association>
+	</resultMap>
+</mapper>
+
+
+
+
+
+
